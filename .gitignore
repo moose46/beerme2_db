@@ -1,0 +1,10 @@
+/.venv
+/beer2025.db
+db.sqlite3
+beer/__pycache__/
+commissioner/__pycache__/
+commissioner/migrations/
+
+commissioner/scripts/__pycache__/
+beerme.sqlproj
+
