@@ -7,7 +7,7 @@ import sys
 from collections import namedtuple
 from pathlib import Path
 
-from commissioner.models import Driver, Player, RaceSettings
+from commissioner.models import Driver, Player, RaceResult, RaceSettings
 
 date_format = "%m-%d-%Y"
 # the race results data source , .txt files
@@ -34,7 +34,7 @@ try:
         filename=Path(__file__).resolve().parent.parent
         / "scripts"
         / "logs"
-        / "load_all.txt",
+        / "load_race_results.txt",
         level=logging.DEBUG,
         format="%(asctime)s - %(levelname)s - %(message)s",
         filemode="w",
@@ -58,20 +58,17 @@ def is_valid_date(date_str):
 
 def look_up_driver(row):
     try:
-        return Driver.objects.get(name=row.NAME)
+        return Driver.objects.get(name=row.DRIVER)
 
     except Driver.DoesNotExist as e:
         driver = Driver()
-        try:
-            driver.name = row.NAME
-            driver.slug = row.SLUG
-            driver.website = row.WEBSITE
-            driver.save()
-            logging.debug(f"Created {driver.name}")
-            return driver
-        except Exception as e:
-            print(f"{e}")
-            exit()
+        # TODO: many to many insert
+        driver.name = row.DRIVER
+        driver.slug = ""
+        driver.website = ""
+        driver.save()
+        logging.debug(f"Created {driver.name}")
+        return driver
 
 
 def load_players():
@@ -83,27 +80,37 @@ def load_players():
         exit()
 
 
-def load_drivers():
-    csv_filename = f"{source_csv_directory}/drivers.csv"
-    logging.debug(f"Source of the data is {csv_filename}")
+def check_for_results_file(filename):
+    if not os.path.isfile(filename):
+        with open(filename, "w"):
+            pass
+        print(f"Created results file {filename}, load the data... exiting")
+        exit()
+
+
+def load_race_results(race_date):
+    results_csv_filename = f"{source_csv_directory}\\{race_date}.csv"
+    logging.debug(f"Source of the data is {results_csv_filename}")
+    check_for_results_file(results_csv_filename)
     try:
-        with open(csv_filename) as f:
-            reader = csv.reader(f, delimiter=",")
-            next(reader)  # skip the headers in the file
-            DriverInfo = namedtuple("DriverInfo", "NAME WEBSITE SLUG")
-            # try:
-            for row in reader:
-                data = DriverInfo(*row)
-                driver = look_up_driver(data)
-            # except Exception as e:
-            #     sys.exit(f"load_drivers {reader.line_num} {e}")
+        with open(f"{source_csv_directory}\\{race_date}.csv") as f:
+            reader = csv.reader(f, delimiter="\t")
+            RaceResultsInfo = namedtuple("RaceResultsInfo", next(reader), rename=True)
+            try:
+                for row in reader:
+                    data = RaceResultsInfo(*row)
+                    look_up_driver(data)
+            except Exception as e:
+                print(row)
+                sys.exit(f"load_race_results {reader.line_num} {e}")
+
     except Exception as e:
-        print(f"load_drivers() -> {e} {reader.line_num}")
+        print(f"load_race_results() -> {e}")
         exit()
 
 
 def run():
-    logging.info("Starting to Load Drivers")
-    load_drivers()
-    # load_players()
+    logging.info("Starting to Load Race Results")
+    # need to prompt for the date
+    load_race_results("02-16-2025")
     print("Runscript OK")
