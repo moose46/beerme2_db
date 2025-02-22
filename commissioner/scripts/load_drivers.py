@@ -20,7 +20,6 @@ if not os.path.isdir(source_txt_race_file):
     exit()
 
 try:
-    source_txt_race_file = RaceSettings.objects.get(contents="race_results")
     source_csv_directory = (
         Path(__file__).resolve().parent.parent / "scripts" / "csv_data"
     )
@@ -63,15 +62,20 @@ def look_up_driver(row):
     except Driver.DoesNotExist as e:
         driver = Driver()
         try:
-            driver.name = row.NAME
-            driver.slug = row.SLUG
-            driver.website = row.WEBSITE
-            driver.save()
-            logging.debug(f"Created {driver.name}")
-            return driver
+            return _extracted_from_look_up_driver_8(row, driver)
         except Exception as e:
             print(f"{e}")
             exit()
+
+
+# TODO Rename this here and in `look_up_driver`
+def _extracted_from_look_up_driver_8(row, driver):
+    driver.name = row.NAME
+    driver.slug = row.SLUG
+    driver.website = row.WEBSITE
+    driver.save()
+    logging.debug(f"Created {driver.name}")
+    return driver
 
 
 def load_players():

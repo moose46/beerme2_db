@@ -1,3 +1,2 @@
-2025-02-20 20:05:32,358 - INFO - Starting to Load Race Results
-2025-02-20 20:05:32,358 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\02-16-2025.csv
-2025-02-20 20:05:32,423 - DEBUG - Created Helio Castroneves
+2025-02-21 10:08:20,293 - INFO - Starting to Load Race Results
+2025-02-21 10:08:20,293 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\02-16-2025.csv

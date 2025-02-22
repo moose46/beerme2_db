@@ -20,7 +20,6 @@ if not os.path.isdir(source_txt_race_file):
     exit()
 
 try:
-    source_txt_race_file = RaceSettings.objects.get(contents="race_results")
     source_csv_directory = (
         Path(__file__).resolve().parent.parent / "scripts" / "csv_data"
     )
