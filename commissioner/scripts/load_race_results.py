@@ -7,7 +7,7 @@ import sys
 from collections import namedtuple
 from pathlib import Path
 
-from commissioner.models import Driver, Player, RaceResult, RaceSettings
+from commissioner.models import Driver, Player, Race, RaceResult, RaceSettings
 
 date_format = "%m-%d-%Y"
 # the race results data source , .txt files
@@ -81,13 +81,67 @@ def load_players():
 
 def check_for_results_file(filename):
     if not os.path.isfile(filename):
-        with open(filename, "w"):
-            pass
+        with open(filename, "w") as f:
+            f.write("\n")
         print(f"Created results file {filename}, load the data... exiting")
         exit()
 
 
-def load_race_results(race_date):
+from dateutil.parser import parse
+
+
+def CheckRaceRecord(race_date):
+    """
+    This function queries the Race model to determine if any race records
+    exist for the specified race_date.
+
+    Args:
+        race_date: The date of the race to check for.
+
+    Returns:
+        True if a race record exists for the given date, False otherwise.
+    """
+    dt = parse(race_date)
+    race_date = dt.strftime("%Y-%m-%d")
+    logging.info(f"Check Race Date {race_date}")
+    return Race.objects.filter(race_date=race_date).exists()
+
+
+def insert_race_results(driver: Driver, data, race):
+    # If this race has already been loaded return
+    if not Race.create_results_file:
+        return
+    finish = RaceResult()
+
+    finish.finish_pos = data.POS
+    finish.start_pos = data.START
+    # try:
+    #     driver = Driver.objects.get(name=data.DRIVER)
+    # except Exception as e:
+    #     print(f"{e}")
+    #     exit()
+    # print(f"{driver}")
+    finish.race = race
+    finish.driver = driver
+    finish.car_no = data.CAR
+    finish.manufacturer = data.MANUFACTURER
+    finish.laps = data.LAPS
+    finish.led = data.LED
+    finish.save()
+
+
+def load_race_results(race):
+    # convert the race_date to a string
+    race_date = race.race_date.strftime("%m-%d-%Y")
+    print(f"Loading {race_date}")
+    if not CheckRaceRecord(race_date=race_date):
+        print(
+            f"Race data is not entered yet, enter the race record for {race_date} first!"
+        )
+        logging.warning(
+            f"Race data is not entered yet, enter the race record for {race_date} first!"
+        )
+        exit(-1)
     results_csv_filename = f"{source_csv_directory}\\{race_date}.csv"
     logging.debug(f"Source of the data is {results_csv_filename}")
     check_for_results_file(results_csv_filename)
@@ -96,20 +150,38 @@ def load_race_results(race_date):
             reader = csv.reader(f, delimiter="\t")
             RaceResultsInfo = namedtuple("RaceResultsInfo", next(reader), rename=True)
             try:
+                row_count = 0
                 for row in reader:
                     data = RaceResultsInfo(*row)
-                    look_up_driver(data)
+                    row_count += 1
+                    driver = look_up_driver(data)
+                    insert_race_results(driver, data, race)
+                # if there is no data in the csv file, exit
+                if row_count == 0:
+                    print("No Results in the data file, exiting!")
+                    logging.warning("No Results in the data file, exiting!")
+                    return False
             except Exception as e:
                 print(row)
-                sys.exit(f"load_race_results {reader.line_num} {e}")
+                sys.exit(f"load_race_results {e}")
 
-    except Exception as e:
-        print(f"load_race_results() -> {e}")
+    except Exception as e1:
+        print(f"load_race_results() -> {e1}")
         exit()
+    return True
 
 
 def run():
     logging.info("Starting to Load Race Results")
     # need to prompt for the date
-    load_race_results("02-16-2025")
+    for race in Race.objects.all():
+        # Create results file is checked
+        if race.create_results_file:
+            # remove all data from this race and refresh the data
+            RaceResult.objects.filter(race).delete()
+            if load_race_results(race):
+                # mark the race results as loaded
+                race.create_results_file = False
+                race.save()
+
     print("Runscript OK")

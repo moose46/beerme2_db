@@ -75,7 +75,8 @@ class Race(Base):
     race_date = models.DateField(null=True)
     website = models.URLField(null=True, blank=True)
     laps = models.IntegerField(default=-1)
-    # If checked load_all will reload results data
+    # If checked load_all will reload results data and or create a default
+    # results file as the race date example: 00-00-2025.csv
     reload = models.BooleanField(default=False)
     # creates a data results file in beerme2, resets after empty file has been created
     create_results_file = models.BooleanField(default=True, name="create_results_file")
@@ -91,6 +92,9 @@ class Driver(Base):
     name = models.CharField(max_length=64, null=False, unique=True)
     website = models.URLField(null=True, blank=True)
     slug = models.TextField(blank=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class RaceResult(Base):

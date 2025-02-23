@@ -8,3 +8,4 @@ commissioner/migrations/
 commissioner/scripts/__pycache__/
 beerme.sqlproj
 
+commissioner/scripts/logs/load_race_results.txt

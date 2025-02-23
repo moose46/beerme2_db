@@ -1,0 +1,8 @@
+select name, car_no, manufacturer, finish_pos, start_pos from commissioner_raceresult a, commissioner_driver b
+where a.driver_id = b.id and name like("%Wal%")
+ORDER BY finish_pos;
+
+-- delete from commissioner_raceresult;
+
+
+

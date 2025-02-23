@@ -77,15 +77,19 @@ WSGI_APPLICATION = "beer.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "mssql",
-        "HOST": "localhost",
-        "NAME": "beerme",
-        "USER": "",
-        "PASSWORD": "",
-        "OPTIONS": {
-            "driver": "ODBC Driver 17 for SQL Server",
-        },
-    }
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "beerme.db",
+    },
+    # "default": {
+    #     "ENGINE": "mssql",
+    #     "HOST": "localhost",
+    #     "NAME": "beerme",
+    #     "USER": "",
+    #     "PASSWORD": "",
+    #     "OPTIONS": {
+    #         "driver": "ODBC Driver 17 for SQL Server",
+    #     },
+    # }
 }
 
 
