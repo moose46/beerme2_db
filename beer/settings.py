@@ -77,9 +77,17 @@ WSGI_APPLICATION = "beer.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "beerme.db",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "beer_me",
+        "USER": "bob",
+        "PASSWORD": "admin",
+        "HOST": "localhost",
+        "PORT": "",
     },
+    # "sqllite": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "beerme.db",
+    # },
     # "default": {
     #     "ENGINE": "mssql",
     #     "HOST": "localhost",

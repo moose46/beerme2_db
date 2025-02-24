@@ -10,3 +10,4 @@ beerme.sqlproj
 
 commissioner/scripts/logs/load_race_results.txt
 /commissioner/migrations/__pycache__
+beerme.db

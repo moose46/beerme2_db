@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from commissioner.models import Driver, Race, RaceResult, State, Track
+from commissioner.models import Driver, Race, RaceResult, State, Track,Player,Bet
 
 # Register your models here.
 
@@ -8,6 +8,12 @@ from commissioner.models import Driver, Race, RaceResult, State, Track
 @admin.register(Race)
 class RaceAdmin(admin.ModelAdmin):
     display_name = "Races"
+@admin.register(Player)
+class PlayerAdmin(admin.ModelAdmin):
+    display_name = "Race Picks"
+@admin.register(Bet)
+class BetAdmin(admin.ModelAdmin):
+    display_name = "Bets"
 
 
 @admin.register(RaceResult)
