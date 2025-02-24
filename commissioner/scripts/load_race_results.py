@@ -176,9 +176,13 @@ def run():
     # need to prompt for the date
     for race in Race.objects.all():
         # Create results file is checked
-        if race.create_results_file:
-            # remove all data from this race and refresh the data
-            RaceResult.objects.filter(race).delete()
+        if race.create_results_file == True:
+            try:
+                # remove all data from this race and refresh the data
+                RaceResult.objects.filter(race_id=race.id).delete()
+            except Exception as e:
+                print(f"{e} {race}")
+                exit()
             if load_race_results(race):
                 # mark the race results as loaded
                 race.create_results_file = False

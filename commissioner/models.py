@@ -1,6 +1,6 @@
 import string
 from tkinter import CASCADE
-
+from django.db.models import Deferrable, UniqueConstraint
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
@@ -25,6 +25,8 @@ class Base(models.Model):
 
 class Player(Base):
     name = models.CharField(max_length=64, null=True, unique=True)
+    def __str__(self):
+        return self.name
 
 
 class State(Base):
@@ -92,6 +94,9 @@ class Driver(Base):
     name = models.CharField(max_length=64, null=False, unique=True)
     website = models.URLField(null=True, blank=True)
     slug = models.TextField(blank=True)
+    team = models.TextField(blank=True)
+
+
 
     def __str__(self) -> str:
         return self.name
@@ -143,6 +148,14 @@ class Bet(Base):
     player = models.ForeignKey(Player, on_delete=models.CASCADE, null=False)
     finish = models.IntegerField(default=-1)
 
+    def __str__(self):
+        return f"{self.race.name} - {self.player.name} - {self.driver.name}"
+
+    class Meta:
+        # unique_together = ("race","player","driver")
+        constraints = [
+            models.UniqueConstraint(fields=['race', 'player','driver'], name='unique_bet')
+        ]
 
 class RaceSettings(Base):
     """
