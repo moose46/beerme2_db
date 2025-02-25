@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2025-02-24 12:15:33,790 - INFO - Starting to Load Race Results
 2025-02-24 12:15:33,835 - INFO - Check Race Date 2024-02-25
 2025-02-24 12:15:33,836 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\02-25-2024.csv
@@ -5,3 +6,16 @@
 2025-02-24 12:15:33,852 - DEBUG - Created Kaz Grala
 2025-02-24 12:15:33,855 - DEBUG - Created Daniel Hemric
 2025-02-24 12:15:33,870 - DEBUG - Created Josh Williams
+=======
+2025-02-23 15:58:15,387 - INFO - Starting to Load Race Results
+2025-02-23 15:58:15,396 - INFO - Check Race Date 2025-02-23
+2025-02-23 15:58:15,396 - DEBUG - Source of the data is C:\Users\me\VsCodeProjects\beerme2_db\commissioner\scripts\csv_data\02-23-2025.csv
+2025-02-23 15:58:15,396 - WARNING - No Results in the data file, exiting!
+2025-02-23 15:58:15,396 - INFO - Check Race Date 2024-02-25
+2025-02-23 15:58:15,402 - DEBUG - Source of the data is C:\Users\me\VsCodeProjects\beerme2_db\commissioner\scripts\csv_data\02-25-2024.csv
+2025-02-23 15:58:15,550 - DEBUG - Created Harrison Burton
+2025-02-23 15:58:15,595 - DEBUG - Created Kaz Grala
+2025-02-23 15:58:15,636 - DEBUG - Created Daniel Hemric
+2025-02-23 15:58:15,715 - DEBUG - Created B.J. McLeod
+2025-02-23 15:58:15,861 - DEBUG - Created Josh Williams
+>>>>>>> c5cc305226a83bf7c12a709283c795d4bba7307b
