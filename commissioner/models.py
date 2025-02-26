@@ -1,6 +1,6 @@
 import string
 from tkinter import CASCADE
-from django.db.models import Deferrable, UniqueConstraint
+
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
@@ -26,8 +26,6 @@ class Base(models.Model):
 
 class Player(Base):
     name = models.CharField(max_length=64, null=True, unique=True)
-    def __str__(self):
-        return self.name
 
     def __str__(self):
         return self.name
@@ -46,6 +44,19 @@ class State(Base):
     class META:
         unique = "name"
         ordering = "name"
+
+
+class Team(Base):
+    """
+    Represents a racing team.
+
+    This model stores information about a racing team, including its name.
+    """
+
+    name = models.CharField(max_length=32, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Track(Base):
@@ -98,12 +109,7 @@ class Driver(Base):
     name = models.CharField(max_length=64, null=False, unique=True)
     website = models.URLField(null=True, blank=True)
     slug = models.TextField(blank=True)
-    team = models.TextField(blank=True)
-<<<<<<< HEAD
-=======
-
-
->>>>>>> c5cc305226a83bf7c12a709283c795d4bba7307b
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
         return self.name
@@ -159,20 +165,14 @@ class Bet(Base):
         return f"{self.race.name} - {self.player.name} - {self.driver.name}"
 
     class Meta:
-<<<<<<< HEAD
         unique_together = ("race", "driver")
-        # constraints = [
-        #     models.UniqueConstraint(
-        #         fields=["race", "player", "driver"], name="unique_bet"
-        #     )
-        # ]
 
-=======
-        # unique_together = ("race","player","driver")
-        constraints = [
-            models.UniqueConstraint(fields=['race', 'player','driver'], name='unique_bet')
-        ]
->>>>>>> c5cc305226a83bf7c12a709283c795d4bba7307b
+    # constraints = [
+    #     models.UniqueConstraint(
+    #         fields=["race", "player", "driver"], name="unique_bet"
+    #     )
+    # ]
+
 
 class RaceSettings(Base):
     """

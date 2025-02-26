@@ -1,21 +1,54 @@
-<<<<<<< HEAD
-2025-02-24 12:15:33,790 - INFO - Starting to Load Race Results
-2025-02-24 12:15:33,835 - INFO - Check Race Date 2024-02-25
-2025-02-24 12:15:33,836 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\02-25-2024.csv
-2025-02-24 12:15:33,849 - DEBUG - Created Harrison Burton
-2025-02-24 12:15:33,852 - DEBUG - Created Kaz Grala
-2025-02-24 12:15:33,855 - DEBUG - Created Daniel Hemric
-2025-02-24 12:15:33,870 - DEBUG - Created Josh Williams
-=======
-2025-02-23 15:58:15,387 - INFO - Starting to Load Race Results
-2025-02-23 15:58:15,396 - INFO - Check Race Date 2025-02-23
-2025-02-23 15:58:15,396 - DEBUG - Source of the data is C:\Users\me\VsCodeProjects\beerme2_db\commissioner\scripts\csv_data\02-23-2025.csv
-2025-02-23 15:58:15,396 - WARNING - No Results in the data file, exiting!
-2025-02-23 15:58:15,396 - INFO - Check Race Date 2024-02-25
-2025-02-23 15:58:15,402 - DEBUG - Source of the data is C:\Users\me\VsCodeProjects\beerme2_db\commissioner\scripts\csv_data\02-25-2024.csv
-2025-02-23 15:58:15,550 - DEBUG - Created Harrison Burton
-2025-02-23 15:58:15,595 - DEBUG - Created Kaz Grala
-2025-02-23 15:58:15,636 - DEBUG - Created Daniel Hemric
-2025-02-23 15:58:15,715 - DEBUG - Created B.J. McLeod
-2025-02-23 15:58:15,861 - DEBUG - Created Josh Williams
->>>>>>> c5cc305226a83bf7c12a709283c795d4bba7307b
+2025-02-25 13:22:00,120 - INFO - Starting to Load Race Results
+2025-02-25 13:22:00,169 - INFO - Check Race Date 2025-02-16
+2025-02-25 13:22:00,169 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\02-16-2025.csv
+2025-02-25 13:22:00,172 - DEBUG - Created William Byron
+2025-02-25 13:22:00,174 - DEBUG - Created Tyler Reddick
+2025-02-25 13:22:00,175 - DEBUG - Created Jimmie Johnson
+2025-02-25 13:22:00,176 - DEBUG - Created Chase Briscoe
+2025-02-25 13:22:00,177 - DEBUG - Created John Hunter Nemechek
+2025-02-25 13:22:00,179 - DEBUG - Created Alex Bowman
+2025-02-25 13:22:00,180 - DEBUG - Created Ryan Blaney
+2025-02-25 13:22:00,181 - DEBUG - Created Austin Cindric
+2025-02-25 13:22:00,182 - DEBUG - Created Justin Allgaier
+2025-02-25 13:22:00,183 - DEBUG - Created Chris Buescher
+2025-02-25 13:22:00,184 - DEBUG - Created Michael McDowell
+2025-02-25 13:22:00,185 - DEBUG - Created Erik Jones
+2025-02-25 13:22:00,186 - DEBUG - Created Daniel Suarez
+2025-02-25 13:22:00,187 - DEBUG - Created Ty Dillon
+2025-02-25 13:22:00,188 - DEBUG - Created Chase Elliott
+2025-02-25 13:22:00,189 - DEBUG - Created Ty Gibbs
+2025-02-25 13:22:00,190 - DEBUG - Created Riley Herbst
+2025-02-25 13:22:00,191 - DEBUG - Created Ricky Stenhouse Jr.
+2025-02-25 13:22:00,192 - DEBUG - Created Justin Haley
+2025-02-25 13:22:00,193 - DEBUG - Created Kyle Larson
+2025-02-25 13:22:00,194 - DEBUG - Created Cole Custer
+2025-02-25 13:22:00,195 - DEBUG - Created Corey LaJoie
+2025-02-25 13:22:00,197 - DEBUG - Created Austin Dillon
+2025-02-25 13:22:00,198 - DEBUG - Created Denny Hamlin
+2025-02-25 13:22:00,199 - DEBUG - Created Cody Ware
+2025-02-25 13:22:00,200 - DEBUG - Created Brad Keselowski
+2025-02-25 13:22:00,201 - DEBUG - Created Todd Gilliland
+2025-02-25 13:22:00,202 - DEBUG - Created Noah Gragson
+2025-02-25 13:22:00,203 - DEBUG - Created Bubba Wallace
+2025-02-25 13:22:00,204 - DEBUG - Created Carson Hocevar
+2025-02-25 13:22:00,205 - DEBUG - Created Christopher Bell
+2025-02-25 13:22:00,206 - DEBUG - Created Ryan Preece
+2025-02-25 13:22:00,207 - DEBUG - Created Shane van Gisbergen
+2025-02-25 13:22:00,208 - DEBUG - Created Kyle Busch
+2025-02-25 13:22:00,209 - DEBUG - Created Joey Logano
+2025-02-25 13:22:00,210 - DEBUG - Created Zane Smith
+2025-02-25 13:22:00,211 - DEBUG - Created Josh Berry
+2025-02-25 13:22:00,212 - DEBUG - Created Martin Truex Jr.
+2025-02-25 13:22:00,213 - DEBUG - Created Helio Castroneves
+2025-02-25 13:22:00,214 - DEBUG - Created Ross Chastain
+2025-02-25 13:22:00,215 - DEBUG - Created AJ Allmendinger
+2025-02-25 13:22:00,217 - INFO - Check Race Date 2025-02-23
+2025-02-25 13:22:00,217 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\02-23-2025.csv
+2025-02-25 13:22:00,234 - DEBUG - Created B.J. McLeod
+2025-02-25 13:22:00,244 - DEBUG - Created J.J. Yeley
+2025-02-25 13:22:00,248 - INFO - Check Race Date 2024-02-25
+2025-02-25 13:22:00,248 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\02-25-2024.csv
+2025-02-25 13:22:00,256 - DEBUG - Created Harrison Burton
+2025-02-25 13:22:00,258 - DEBUG - Created Kaz Grala
+2025-02-25 13:22:00,261 - DEBUG - Created Daniel Hemric
+2025-02-25 13:22:00,274 - DEBUG - Created Josh Williams

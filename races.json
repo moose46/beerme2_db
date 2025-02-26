@@ -1,0 +1,50 @@
+[
+  {
+    "model": "commissioner.race",
+    "pk": 1,
+    "fields": {
+      "createdAt": "2025-02-24T15:50:02.788Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T15:51:40.352Z",
+      "name": "Daytona 500",
+      "track": 1,
+      "race_date": "2025-02-16",
+      "website": "https://www.daytonainternationalspeedway.com/",
+      "laps": -1,
+      "reload": false,
+      "create_results_file": false
+    }
+  },
+  {
+    "model": "commissioner.race",
+    "pk": 2,
+    "fields": {
+      "createdAt": "2025-02-24T15:50:35.186Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T16:02:38.313Z",
+      "name": "Ambetter Health 400",
+      "track": 2,
+      "race_date": "2025-02-23",
+      "website": "https://www.atlantamotorspeedway.com/",
+      "laps": -1,
+      "reload": false,
+      "create_results_file": false
+    }
+  },
+  {
+    "model": "commissioner.race",
+    "pk": 3,
+    "fields": {
+      "createdAt": "2025-02-24T17:14:45.585Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T17:15:33.871Z",
+      "name": "Ambetter Health 400",
+      "track": 2,
+      "race_date": "2024-02-25",
+      "website": "https://www.atlantamotorspeedway.com/",
+      "laps": -1,
+      "reload": false,
+      "create_results_file": false
+    }
+  }
+]

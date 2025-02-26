@@ -1,0 +1,22 @@
+[
+  {
+    "model": "commissioner.player",
+    "pk": 1,
+    "fields": {
+      "createdAt": "2025-02-24T15:53:56.614Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T15:53:56.614Z",
+      "name": "Bob"
+    }
+  },
+  {
+    "model": "commissioner.player",
+    "pk": 2,
+    "fields": {
+      "createdAt": "2025-02-24T15:54:29.640Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T15:54:29.640Z",
+      "name": "Greg"
+    }
+  }
+]

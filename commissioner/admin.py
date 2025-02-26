@@ -1,16 +1,34 @@
 from django.contrib import admin
 
-from commissioner.models import Driver, Race, RaceResult, State, Track,Player,Bet
+from commissioner.models import (
+    Bet,
+    Driver,
+    Player,
+    Race,
+    RaceResult,
+    State,
+    Team,
+    Track,
+)
 
 # Register your models here.
+
+
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    display_name = "Races"
 
 
 @admin.register(Race)
 class RaceAdmin(admin.ModelAdmin):
     display_name = "Races"
+
+
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
     display_name = "Race Picks"
+
+
 @admin.register(Bet)
 class BetAdmin(admin.ModelAdmin):
     display_name = "Bets"

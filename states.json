@@ -1,0 +1,62 @@
+[
+  {
+    "model": "commissioner.state",
+    "pk": 1,
+    "fields": {
+      "createdAt": "2025-02-24T15:48:49.911Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T15:48:49.911Z",
+      "name": "Florida"
+    }
+  },
+  {
+    "model": "commissioner.state",
+    "pk": 2,
+    "fields": {
+      "createdAt": "2025-02-24T15:49:26.351Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T15:49:26.351Z",
+      "name": "Georgia"
+    }
+  },
+  {
+    "model": "commissioner.state",
+    "pk": 3,
+    "fields": {
+      "createdAt": "2025-02-24T17:19:30.144Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T17:19:30.144Z",
+      "name": "Texas"
+    }
+  },
+  {
+    "model": "commissioner.state",
+    "pk": 4,
+    "fields": {
+      "createdAt": "2025-02-24T17:25:06.598Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T17:25:06.598Z",
+      "name": "Arizona"
+    }
+  },
+  {
+    "model": "commissioner.state",
+    "pk": 5,
+    "fields": {
+      "createdAt": "2025-02-24T17:27:13.005Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T17:27:13.005Z",
+      "name": "Nevada"
+    }
+  },
+  {
+    "model": "commissioner.state",
+    "pk": 6,
+    "fields": {
+      "createdAt": "2025-02-24T17:35:04.064Z",
+      "user": 1,
+      "updatedAt": "2025-02-24T17:35:04.064Z",
+      "name": "Virginia"
+    }
+  }
+]
