@@ -7,7 +7,7 @@ import sys
 from collections import namedtuple
 from pathlib import Path
 
-from commissioner.models import Driver, Player, Race, RaceResult, RaceSettings
+from commissioner.models import Bet, Driver, Player, Race, RaceResult, RaceSettings
 
 date_format = "%m-%d-%Y"
 # the race results data source , .txt files
@@ -171,6 +171,16 @@ def load_race_results(race):
     return True
 
 
+def update_bets(race):
+    for bet in Bet.objects.filter(race=race):
+        race_driver_results = RaceResult.objects.filter(driver=bet.driver).filter(
+            race=bet.race
+        )
+        print(f"{bet.player} {bet.race} {race_driver_results[0].finish_pos}")
+        bet.finish = race_driver_results[0].finish_pos
+        bet.save()
+
+
 def run():
     logging.info("Starting to Load Race Results")
     # need to prompt for the date
@@ -187,5 +197,5 @@ def run():
                 # mark the race results as loaded
                 race.create_results_file = False
                 race.save()
-
+        update_bets(race)
     print("Runscript OK")

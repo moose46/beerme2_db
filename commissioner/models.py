@@ -33,6 +33,7 @@ class Player(Base):
 
 class State(Base):
     name = models.CharField(max_length=32)
+    country = models.CharField(max_length=32, default="USA", null=True)
 
     def __str__(self) -> str:
         return string.capwords(self.name)
@@ -54,9 +55,13 @@ class Team(Base):
     """
 
     name = models.CharField(max_length=32, unique=True)
+    website = models.URLField(max_length=128, null=True, unique=True)
 
     def __str__(self):
         return self.name
+
+    class META:
+        ordering = ["name"]
 
 
 class Track(Base):
@@ -89,8 +94,8 @@ class Track(Base):
 class Race(Base):
     name = models.CharField(max_length=64)
     track = models.ForeignKey(Track, on_delete=models.CASCADE, null=True)
-    race_date = models.DateField(null=True)
-    website = models.URLField(null=True, blank=True)
+    race_date = models.DateField(null=False)
+    # website = models.URLField(null=True, blank=True)
     laps = models.IntegerField(default=-1)
     # If checked load_all will reload results data and or create a default
     # results file as the race date example: 00-00-2025.csv
@@ -103,12 +108,13 @@ class Race(Base):
 
     class META:
         unique_together = ("track", "race_date")
+        orderby = ["-race_date"]
 
 
 class Driver(Base):
     name = models.CharField(max_length=64, null=False, unique=True)
     website = models.URLField(null=True, blank=True)
-    slug = models.TextField(blank=True)
+    # slug = models.TextField(blank=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:

@@ -4,7 +4,16 @@ from django.contrib.auth.models import User
 from django.test import TestCase, tag
 
 # Create your tests here.
-from commissioner.models import Bet, Driver, Player, Race, RaceResult, State, Track
+from commissioner.models import (
+    Bet,
+    Driver,
+    Player,
+    Race,
+    RaceResult,
+    State,
+    Team,
+    Track,
+)
 
 """
      python manage.py test
@@ -19,9 +28,12 @@ class StateTestCase(TestCase):
         State.objects.create(name="Ohio", user_id=user.pk)
         Track.objects.create(name="Daytona", user_id=user.pk)
         Race.objects.create(name="Daytona 500", user_id=user.pk)
+        # add team
+        Team.objects.create(name="Penske", user_id=user.pk)
         # Add drivers
-        Driver.objects.create(name="Ricky Rudd", user_id=user.pk)
-        Driver.objects.create(name="Ryan Blaney", user_id=user.pk)
+        team = Team.objects.get(name="Penske")
+        Driver.objects.create(name="Ricky Rudd", user_id=user.pk, team=team)
+        Driver.objects.create(name="Ryan Blaney", user_id=user.pk, team=team)
 
         # Add Players
         Player.objects.create(name="Greg", user_id=user.pk)
@@ -38,7 +50,7 @@ class StateTestCase(TestCase):
         self.blaney = Driver.objects.get(name="Ryan Blaney")
 
         # Add State
-        self.state = State.objects.get(name="OHIO")
+        self.state = State.objects.get(name="Ohio")
 
         # Add Players
         self.player_greg = Player.objects.get(name="Greg")
@@ -72,9 +84,11 @@ class StateTestCase(TestCase):
         self.assertEqual(self.state.state_name, "Ohio")
         self.assertIsNotNone(self.state.createdAt)
 
+    @tag("track")
     def test_track(self):
         self.assertEqual(self.daytona.name, "Daytona")
 
+    @tag("race")
     def test_race(self):
         self.assertEqual(self.daytona_500_race.name, "Daytona 500")
 
