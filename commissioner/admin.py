@@ -6,6 +6,7 @@ from commissioner.models import (
     Player,
     Race,
     RaceResult,
+    ScoreBoard,
     State,
     Team,
     Track,
@@ -47,6 +48,11 @@ class BetAdmin(admin.ModelAdmin):
 
 @admin.register(RaceResult)
 class RaceResultsAdmin(admin.ModelAdmin):
+    display_name = "Race Results"
+
+
+@admin.register(ScoreBoard)
+class ScoreBoardAdmin(admin.ModelAdmin):
     display_name = "Race Results"
 
 

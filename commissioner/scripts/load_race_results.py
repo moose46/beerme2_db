@@ -7,7 +7,15 @@ import sys
 from collections import namedtuple
 from pathlib import Path
 
-from commissioner.models import Bet, Driver, Player, Race, RaceResult, RaceSettings
+from commissioner.models import (
+    Bet,
+    Driver,
+    Player,
+    Race,
+    RaceResult,
+    RaceSettings,
+    ScoreBoard,
+)
 
 date_format = "%m-%d-%Y"
 # the race results data source , .txt files
@@ -198,4 +206,6 @@ def run():
                 race.create_results_file = False
                 race.save()
         update_bets(race)
+        sb = ScoreBoard()
+        # sb.score_the_race(race)
     print("Runscript OK")

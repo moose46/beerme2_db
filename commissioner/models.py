@@ -1,6 +1,10 @@
 import string
+from datetime import date
+from enum import unique
 from tkinter import CASCADE
 
+import django.utils
+import django.utils.timezone
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
@@ -26,6 +30,7 @@ class Base(models.Model):
 
 class Player(Base):
     name = models.CharField(max_length=64, null=True, unique=True)
+    beers = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -94,7 +99,7 @@ class Track(Base):
 class Race(Base):
     name = models.CharField(max_length=64)
     track = models.ForeignKey(Track, on_delete=models.CASCADE, null=True)
-    race_date = models.DateField(null=False)
+    race_date = models.DateField(null=False, default=django.utils.timezone.now)
     # website = models.URLField(null=True, blank=True)
     laps = models.IntegerField(default=-1)
     # If checked load_all will reload results data and or create a default
@@ -201,3 +206,37 @@ class RaceSettings(Base):
 
     def __str__(self) -> str:
         return f"{self.src_dir}"
+
+
+class ScoreBoard(Base):
+    # https://docs.djangoproject.com/en/dev/ref/models/fields/#django.db.models.ForeignKey.related_name
+    race = models.ForeignKey(Race, on_delete=models.CASCADE, null=True)
+    winner = models.ForeignKey(
+        Bet, on_delete=models.CASCADE, null=True, related_name="+"
+    )
+    looser = models.ForeignKey(
+        Bet, on_delete=models.CASCADE, null=True, related_name="+"
+    )
+
+    # @property
+    # def looser(self):
+    #     return self._looser
+
+    # @looser.setter
+    # def looser(self, value):
+    #     self._looser = value
+
+    # @property
+    # def winner(self):
+    #     return self._winner
+
+    # @winner.setter
+    # def winner(self, value):
+    #     self._winner = value
+
+    # def score_the_race(self, race: Race):
+    #     for bet in Bet.objects.filter(race=race):
+    #         print(f"{bet.race} - {bet.player}")
+
+    # class META:
+    #     unique = ["winner", "looser", "race"]
