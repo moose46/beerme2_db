@@ -218,6 +218,9 @@ class ScoreBoard(Base):
         Bet, on_delete=models.CASCADE, null=True, related_name="+"
     )
 
+    def __str__(self) -> str:
+        return f"{self.winner} ---- {self.race} "
+
     # @property
     # def looser(self):
     #     return self._looser

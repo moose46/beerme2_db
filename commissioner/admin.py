@@ -49,6 +49,8 @@ class BetAdmin(admin.ModelAdmin):
 @admin.register(RaceResult)
 class RaceResultsAdmin(admin.ModelAdmin):
     display_name = "Race Results"
+    list_display = ["race", "driver", "finish_pos", "start_pos"]
+    ordering = ["race", "finish_pos"]
 
 
 @admin.register(ScoreBoard)
