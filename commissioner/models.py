@@ -109,7 +109,7 @@ class Race(Base):
     create_results_file = models.BooleanField(default=True, name="create_results_file")
 
     def __str__(self) -> str:
-        return f"{self.name} {self.race_date}"
+        return f"{self.name}"
 
     class META:
         unique_together = ("track", "race_date")

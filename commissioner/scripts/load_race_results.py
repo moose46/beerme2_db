@@ -31,6 +31,7 @@ try:
     source_csv_directory = (
         Path(__file__).resolve().parent.parent / "scripts" / "csv_data"
     )
+    source_data_directory = Path("..") / "beerme2" / "data"
 except Exception as e:
     print(f"Oh Snap! {e}")
     exit()
@@ -71,7 +72,7 @@ def look_up_driver(row):
         driver = Driver()
         # TODO: many to many insert
         driver.name = row.DRIVER
-        driver.slug = ""
+        # driver.slug = ""
         driver.website = ""
         driver.save()
         logging.debug(f"Created {driver.name}")
@@ -151,8 +152,14 @@ def load_race_results(race):
         )
         exit(-1)
     results_csv_filename = f"{source_csv_directory}\\{race_date}.csv"
+    results_data_filename = (
+        f"{source_data_directory}\\results_{race.track.name}_{race_date}_.txt"
+    )
     logging.debug(f"Source of the data is {results_csv_filename}")
+    logging.debug(f"Source of the data (beerme2) is {results_data_filename}")
     check_for_results_file(results_csv_filename)
+    # Check beerme2 for the result file also
+    check_for_results_file(results_data_filename)
     try:
         with open(f"{source_csv_directory}\\{race_date}.csv") as f:
             reader = csv.reader(f, delimiter="\t")
@@ -192,7 +199,7 @@ def update_bets(race):
 def run():
     logging.info("Starting to Load Race Results")
     # need to prompt for the date
-    for race in Race.objects.all():
+    for race in Race.objects.all().order:
         # Create results file is checked
         if race.create_results_file == True:
             try:
