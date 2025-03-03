@@ -61,7 +61,7 @@ class ScoreBoardAdmin(admin.ModelAdmin):
 @admin.register(Track)
 class TrackAdmin(admin.ModelAdmin):
     display_name = "Tracks"
-    ordering = ["name"]
+    ordering = ["short_name"]
 
 
 @admin.register(State)

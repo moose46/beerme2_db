@@ -152,9 +152,7 @@ def load_race_results(race):
         )
         exit(-1)
     results_csv_filename = f"{source_csv_directory}\\{race_date}.csv"
-    results_data_filename = (
-        f"{source_data_directory}\\results_{race.track.name}_{race_date}_.txt"
-    )
+    results_data_filename = f"{source_data_directory}\\{race_date}.csv"
     logging.debug(f"Source of the data is {results_csv_filename}")
     logging.debug(f"Source of the data (beerme2) is {results_data_filename}")
     check_for_results_file(results_csv_filename)
@@ -199,7 +197,7 @@ def update_bets(race):
 def run():
     logging.info("Starting to Load Race Results")
     # need to prompt for the date
-    for race in Race.objects.all().order:
+    for race in Race.objects.all():
         # Create results file is checked
         if race.create_results_file == True:
             try:

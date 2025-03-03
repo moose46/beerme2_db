@@ -71,6 +71,7 @@ class Team(Base):
 
 class Track(Base):
     name = models.CharField(max_length=32, unique=True)
+    short_name = models.CharField(max_length=16, null=True, default="N/A")
     website = models.URLField(null=True, blank=True)
     city = models.CharField(max_length=32, null=True, blank=True)
     state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
@@ -86,7 +87,7 @@ class Track(Base):
     )  # Validators should be a list
 
     def __str__(self) -> str:
-        return f"{string.capwords(self.name)}, {self.city} {self.state}"
+        return f"{string.capwords(self.short_name)}, {self.city} {self.state}"
 
     @property
     def track_name(self):
