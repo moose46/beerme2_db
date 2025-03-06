@@ -37,7 +37,7 @@ class Player(Base):
 
 
 class State(Base):
-    name = models.CharField(max_length=32)
+    name = models.CharField(max_length=32, unique=True)
     country = models.CharField(max_length=32, default="USA", null=True)
 
     def __str__(self) -> str:
@@ -98,9 +98,11 @@ class Track(Base):
 
 
 class Race(Base):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, default="NASCAR Cup Series Race at")
     track = models.ForeignKey(Track, on_delete=models.CASCADE, null=True)
-    race_date = models.DateField(null=False, default=django.utils.timezone.now)
+    race_date = models.DateField(
+        null=False, default=django.utils.timezone.now, unique=True
+    )
     # website = models.URLField(null=True, blank=True)
     laps = models.IntegerField(default=-1)
     # If checked load_all will reload results data and or create a default

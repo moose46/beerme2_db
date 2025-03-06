@@ -152,12 +152,12 @@ def load_race_results(race):
         )
         exit(-1)
     results_csv_filename = f"{source_csv_directory}\\{race_date}.csv"
-    results_data_filename = f"{source_data_directory}\\{race_date}.csv"
+    # results_data_filename = f"{source_data_directory}\\{race_date}.csv"
     logging.debug(f"Source of the data is {results_csv_filename}")
-    logging.debug(f"Source of the data (beerme2) is {results_data_filename}")
+    # logging.debug(f"Source of the data (beerme2) is {results_data_filename}")
     check_for_results_file(results_csv_filename)
     # Check beerme2 for the result file also
-    check_for_results_file(results_data_filename)
+    # check_for_results_file(results_data_filename)
     try:
         with open(f"{source_csv_directory}\\{race_date}.csv") as f:
             reader = csv.reader(f, delimiter="\t")
