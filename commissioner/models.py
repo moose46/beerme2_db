@@ -112,7 +112,7 @@ class Race(Base):
     create_results_file = models.BooleanField(default=True, name="create_results_file")
 
     def __str__(self) -> str:
-        return f"{self.name}"
+        return f"{self.name} {self.race_date}"
 
     class META:
         unique_together = ("track", "race_date")
@@ -127,6 +127,9 @@ class Driver(Base):
 
     def __str__(self) -> str:
         return self.name
+
+
+from django.db.models.functions import Cast
 
 
 class RaceResult(Base):
@@ -165,7 +168,10 @@ class RaceResult(Base):
     class META:
         verbose_name_plural = "Race Results"
         verbose_name = "Race Results"
-        ordering = ["driver__name"]
+        ordering = [
+            "driver__name",
+            Cast("finish_pos", output_field=models.IntegerField()),
+        ]
         unique_together = ["race", "driver"]
 
 

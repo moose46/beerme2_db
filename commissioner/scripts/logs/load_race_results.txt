@@ -1,27 +1,79 @@
-2025-03-05 10:10:24,486 - INFO - Starting to Load Race Results
-2025-03-05 10:10:24,559 - INFO - Check Race Date 2025-03-16
-2025-03-05 10:10:24,560 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\03-16-2025.csv
-2025-03-05 10:10:24,560 - WARNING - No Results in the data file, exiting!
-2025-03-05 10:10:24,561 - INFO - Check Race Date 2025-03-23
-2025-03-05 10:10:24,562 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\03-23-2025.csv
-2025-03-05 10:10:24,562 - WARNING - No Results in the data file, exiting!
-2025-03-05 10:10:24,563 - INFO - Check Race Date 2025-03-30
-2025-03-05 10:10:24,564 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\03-30-2025.csv
-2025-03-05 10:10:24,564 - WARNING - No Results in the data file, exiting!
-2025-03-05 10:10:24,565 - INFO - Check Race Date 2025-03-09
-2025-03-05 10:10:24,566 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\03-09-2025.csv
-2025-03-05 10:10:24,566 - WARNING - No Results in the data file, exiting!
-2025-03-05 10:10:24,567 - INFO - Check Race Date 2025-06-01
-2025-03-05 10:10:24,568 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-01-2025.csv
-2025-03-05 10:10:24,568 - WARNING - No Results in the data file, exiting!
-2025-03-05 10:10:24,569 - INFO - Check Race Date 2025-05-25
-2025-03-05 10:10:24,570 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\05-25-2025.csv
-2025-03-05 10:10:24,570 - WARNING - No Results in the data file, exiting!
-2025-03-05 10:10:24,571 - INFO - Check Race Date 2025-06-08
-2025-03-05 10:10:24,572 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-08-2025.csv
-2025-03-05 10:10:24,572 - WARNING - No Results in the data file, exiting!
-2025-03-05 10:10:24,573 - INFO - Check Race Date 2025-06-15
-2025-03-05 10:10:24,573 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-15-2025.csv
-2025-03-05 10:10:24,574 - WARNING - No Results in the data file, exiting!
-2025-03-05 10:10:24,590 - INFO - Check Race Date 2025-06-22
-2025-03-05 10:10:24,590 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-22-2025.csv
+2025-03-17 13:01:46,002 - INFO - Starting to Load Race Results
+2025-03-17 13:01:46,063 - INFO - Check Race Date 2025-08-23
+2025-03-17 13:01:46,064 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\08-23-2025.csv
+2025-03-17 13:01:46,064 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,066 - INFO - Check Race Date 2025-08-31
+2025-03-17 13:01:46,066 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\08-31-2025.csv
+2025-03-17 13:01:46,066 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,067 - INFO - Check Race Date 2025-09-07
+2025-03-17 13:01:46,068 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\09-07-2025.csv
+2025-03-17 13:01:46,068 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,069 - INFO - Check Race Date 2025-09-13
+2025-03-17 13:01:46,069 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\09-13-2025.csv
+2025-03-17 13:01:46,070 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,071 - INFO - Check Race Date 2025-09-21
+2025-03-17 13:01:46,071 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\09-21-2025.csv
+2025-03-17 13:01:46,071 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,072 - INFO - Check Race Date 2025-09-28
+2025-03-17 13:01:46,072 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\09-28-2025.csv
+2025-03-17 13:01:46,073 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,074 - INFO - Check Race Date 2025-10-05
+2025-03-17 13:01:46,074 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\10-05-2025.csv
+2025-03-17 13:01:46,075 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,083 - INFO - Check Race Date 2025-10-12
+2025-03-17 13:01:46,084 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\10-12-2025.csv
+2025-03-17 13:01:46,084 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,085 - INFO - Check Race Date 2025-03-23
+2025-03-17 13:01:46,085 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\03-23-2025.csv
+2025-03-17 13:01:46,086 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,087 - INFO - Check Race Date 2025-03-30
+2025-03-17 13:01:46,088 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\03-30-2025.csv
+2025-03-17 13:01:46,088 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,089 - INFO - Check Race Date 2025-10-19
+2025-03-17 13:01:46,089 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\10-19-2025.csv
+2025-03-17 13:01:46,090 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,091 - INFO - Check Race Date 2025-06-01
+2025-03-17 13:01:46,091 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-01-2025.csv
+2025-03-17 13:01:46,091 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,092 - INFO - Check Race Date 2025-05-25
+2025-03-17 13:01:46,093 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\05-25-2025.csv
+2025-03-17 13:01:46,093 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,094 - INFO - Check Race Date 2025-06-08
+2025-03-17 13:01:46,094 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-08-2025.csv
+2025-03-17 13:01:46,095 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,096 - INFO - Check Race Date 2025-06-15
+2025-03-17 13:01:46,096 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-15-2025.csv
+2025-03-17 13:01:46,096 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,098 - INFO - Check Race Date 2025-10-26
+2025-03-17 13:01:46,098 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\10-26-2025.csv
+2025-03-17 13:01:46,098 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,099 - INFO - Check Race Date 2025-11-02
+2025-03-17 13:01:46,099 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\11-02-2025.csv
+2025-03-17 13:01:46,100 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,126 - INFO - Check Race Date 2025-06-22
+2025-03-17 13:01:46,126 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-22-2025.csv
+2025-03-17 13:01:46,127 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,128 - INFO - Check Race Date 2025-07-06
+2025-03-17 13:01:46,128 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\07-06-2025.csv
+2025-03-17 13:01:46,129 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,130 - INFO - Check Race Date 2025-06-28
+2025-03-17 13:01:46,130 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\06-28-2025.csv
+2025-03-17 13:01:46,131 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,132 - INFO - Check Race Date 2025-07-13
+2025-03-17 13:01:46,132 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\07-13-2025.csv
+2025-03-17 13:01:46,132 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,134 - INFO - Check Race Date 2025-07-20
+2025-03-17 13:01:46,134 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\07-20-2025.csv
+2025-03-17 13:01:46,135 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,136 - INFO - Check Race Date 2025-07-27
+2025-03-17 13:01:46,136 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\07-27-2025.csv
+2025-03-17 13:01:46,137 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,138 - INFO - Check Race Date 2025-08-03
+2025-03-17 13:01:46,138 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\08-03-2025.csv
+2025-03-17 13:01:46,139 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,140 - INFO - Check Race Date 2025-08-10
+2025-03-17 13:01:46,140 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\08-10-2025.csv
+2025-03-17 13:01:46,141 - WARNING - No Results in the data file ...
+2025-03-17 13:01:46,160 - INFO - Check Race Date 2025-08-16
+2025-03-17 13:01:46,160 - DEBUG - Source of the data is C:\Users\me\Documents\VisualCodeSource\beerme2_db\commissioner\scripts\csv_data\08-16-2025.csv
+2025-03-17 13:01:46,161 - WARNING - No Results in the data file ...

@@ -92,8 +92,8 @@ def check_for_results_file(filename):
     if not os.path.isfile(filename):
         with open(filename, "w") as f:
             f.write("\n")
-        print(f"Created results file {filename}, load the data... exiting")
-        exit()
+        print(f"Created results file {filename}, check_for_results_file()")
+        # exit()
 
 
 from dateutil.parser import parse
@@ -142,7 +142,6 @@ def insert_race_results(driver: Driver, data, race):
 def load_race_results(race):
     # convert the race_date to a string
     race_date = race.race_date.strftime("%m-%d-%Y")
-    print(f"Loading {race_date}")
     if not CheckRaceRecord(race_date=race_date):
         print(
             f"Race data is not entered yet, enter the race record for {race_date} first!"
@@ -171,9 +170,10 @@ def load_race_results(race):
                     insert_race_results(driver, data, race)
                 # if there is no data in the csv file, exit
                 if row_count == 0:
-                    print("No Results in the data file, exiting!")
-                    logging.warning("No Results in the data file, exiting!")
+                    logging.warning("No Results in the data file ...")
                     return False
+                else:
+                    print(f"Loading {race_date}")
             except Exception as e:
                 print(row)
                 sys.exit(f"load_race_results {e}")
