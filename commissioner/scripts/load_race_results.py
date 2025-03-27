@@ -89,10 +89,11 @@ def load_players():
 
 
 def check_for_results_file(filename):
+    head_tail = os.path.split(filename)
     if not os.path.isfile(filename):
         with open(filename, "w") as f:
             f.write("\n")
-        print(f"Created results file {filename}, check_for_results_file()")
+        print(f"Created results file {head_tail[1]}, check_for_results_file()")
         # exit()
 
 
@@ -124,12 +125,6 @@ def insert_race_results(driver: Driver, data, race):
 
     finish.finish_pos = data.POS
     finish.start_pos = data.START
-    # try:
-    #     driver = Driver.objects.get(name=data.DRIVER)
-    # except Exception as e:
-    #     print(f"{e}")
-    #     exit()
-    # print(f"{driver}")
     finish.race = race
     finish.driver = driver
     finish.car_no = data.CAR

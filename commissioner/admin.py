@@ -26,9 +26,13 @@ class TeamAdmin(admin.ModelAdmin):
 @admin.register(Race)
 class RaceAdmin(admin.ModelAdmin):
     display_name = "Races"
-    list_display = ["name", "race_date", "track"]
-    search_fields = ["race_date"]
+    list_display = ["race_date", "track_name", "road_course", "reload"]
+    search_fields = ["track__name"]
     ordering = ["-race_date"]
+
+    # date_hierarchy = "race_date"
+    def track_name(self, instance):
+        return instance.track.name
 
     def get_search_results(self, request, queryset, search_term):
         queryset, may_have_duplicates = super().get_search_results(
@@ -71,7 +75,7 @@ class RaceResultsAdmin(admin.ModelAdmin):
     ordering = ["race", "finish_pos"]
 
     search_fields = [
-        "finish_pos",
+        "race__track__name",
     ]
 
     def track_name(self, instance):

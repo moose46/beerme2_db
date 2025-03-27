@@ -4,11 +4,11 @@ select
 	-- raceresult.finish_pos,
 	round(avg(raceresult.start_pos),1) avg_start,
 	round(avg(finish_pos),1) avg_finish,
-	count(*),
+	count(*) as "races",
 	team.name,
 	raceresult.manufacturer,
 	track.name track_name
-	-- race.race_date
+	-- ,race.road_course
 from
 	commissioner_driver driver,
 	commissioner_raceresult raceresult,
@@ -22,7 +22,8 @@ where
 	and race.track_id = track.id 
 	and raceresult.driver_id = driver.id
 	and team.id = driver.team_id
-	and track.id = 7
+	and track.id = 27
+	-- and "races" > 2
 	-- and raceresult.finish_pos > 5
 GROUP BY
 	driver.name,
@@ -30,6 +31,7 @@ GROUP BY
 	team.name,
 	raceresult.manufacturer,
 	track.name
+	-- ,race.road_course
 	-- start_pos,
 	-- finish_pos
 ORDER BY

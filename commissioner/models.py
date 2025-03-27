@@ -98,8 +98,9 @@ class Track(Base):
 
 
 class Race(Base):
-    name = models.CharField(max_length=64, default="NASCAR Cup Series Race at")
+    name = models.CharField(max_length=64, default="")
     track = models.ForeignKey(Track, on_delete=models.CASCADE, null=True)
+    road_course = models.BooleanField(default=False)
     race_date = models.DateField(
         null=False, default=django.utils.timezone.now, unique=True
     )
