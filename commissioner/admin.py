@@ -12,6 +12,7 @@ from commissioner.models import (
     State,
     Team,
     Track,
+    TrackType,
 )
 
 # Register your models here.
@@ -107,10 +108,16 @@ class ScoreBoardAdmin(admin.ModelAdmin):
     display_name = "Race Results"
 
 
+@admin.register(TrackType)
+class TrackTypeAdmin(admin.ModelAdmin):
+    display_name = "Race Track Configuration"
+    ordering = ["name"]
+
+
 @admin.register(Track)
 class TrackAdmin(admin.ModelAdmin):
     display_name = "Tracks"
-    ordering = ["short_name"]
+    ordering = ["name"]
 
 
 @admin.register(State)

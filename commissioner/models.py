@@ -69,14 +69,28 @@ class Team(Base):
         ordering = ["name"]
 
 
+class TrackType(Base):
+    name = models.CharField(max_length=32, null=False, default="Oval")
+
+    def __str__(self) -> str:
+        return self.name
+
+    class META:
+        ordering = ["name"]
+
+
 class Track(Base):
-    name = models.CharField(max_length=32, unique=True)
+    name = models.CharField(max_length=64, unique=True)
+    track_type = models.ForeignKey(
+        TrackType, null=True, on_delete=models.CASCADE, blank=True
+    )
     short_name = models.CharField(max_length=16, null=True, default="N/A")
     website = models.URLField(null=True, blank=True)
     city = models.CharField(max_length=32, null=True, blank=True)
     state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
+    # track_config = models.ForeignKey(B)
     length = models.DecimalField(
-        decimal_places=2, default=0.00, max_digits=2, blank=True
+        decimal_places=4, default=0.00, max_digits=5, blank=True
     )
     phone_regex = RegexValidator(
         regex=r"^\+?1?\d{9,15}$",
@@ -87,7 +101,7 @@ class Track(Base):
     )  # Validators should be a list
 
     def __str__(self) -> str:
-        return f"{string.capwords(self.short_name)}, {self.city} {self.state}"
+        return f"{string.capwords(self.name)}, {self.city} {self.state}"
 
     @property
     def track_name(self):
