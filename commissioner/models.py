@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Deferrable, UniqueConstraint
+from djmoney.models.fields import MoneyField
+from djmoney.money import Money
 from pyexpat import model
 
 
@@ -59,6 +61,8 @@ class Team(Base):
     This model stores information about a racing team, including its name.
     """
 
+    # start_date = models.DateField()
+    # end_date = models.DateField()
     name = models.CharField(max_length=32, unique=True)
     website = models.URLField(max_length=128, null=True, unique=True)
 
@@ -67,16 +71,19 @@ class Team(Base):
 
     class META:
         ordering = ["name"]
+        unique = ["name"]
 
 
 class TrackType(Base):
     name = models.CharField(max_length=32, null=False, default="Oval")
+    track_type = models.CharField(max_length=32, null=True, default="")
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.track_type} - {self.name}"
 
     class META:
         ordering = ["name"]
+        unique = ["name", "track_type"]
 
 
 class Track(Base):
@@ -136,12 +143,35 @@ class Race(Base):
 
 class Driver(Base):
     name = models.CharField(max_length=64, null=False, unique=True)
+    # https://pypi.org/project/django-money/
+    salary = MoneyField(
+        max_digits=6, decimal_places=0, null=True, default_currency="USD"
+    )
     website = models.URLField(null=True, blank=True)
     # slug = models.TextField(blank=True)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
+    # team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
+    teams = models.ManyToManyField(Team, through="DriverCurrentTeam")
 
     def __str__(self) -> str:
         return self.name
+
+
+class RacingSeries(Base):
+    name = models.CharField(max_length=32, default="NASCAR")
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class DriverCurrentTeam(Base):
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    racing_series = models.ForeignKey(RacingSeries, on_delete=models.CASCADE, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return f"{self.driver} - {self.racing_series} - {self.team} - {self.start_date}"
 
 
 from django.db.models.functions import Cast

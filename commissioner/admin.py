@@ -5,9 +5,11 @@ from django.contrib import admin
 from commissioner.models import (
     Bet,
     Driver,
+    DriverCurrentTeam,
     Player,
     Race,
     RaceResult,
+    RacingSeries,
     ScoreBoard,
     State,
     Team,
@@ -117,6 +119,7 @@ class TrackTypeAdmin(admin.ModelAdmin):
 @admin.register(Track)
 class TrackAdmin(admin.ModelAdmin):
     display_name = "Tracks"
+    list_display = ["name", "track_type"]
     ordering = ["name"]
 
 
@@ -129,5 +132,17 @@ class StateAdmin(admin.ModelAdmin):
 @admin.register(Driver)
 class DriverAdmin(admin.ModelAdmin):
     display_name = "Drivers"
-    list_display = ["name", "team"]
+    list_display = ["name", "salary"]
     ordering = ["name"]
+
+
+@admin.register(DriverCurrentTeam)
+class DriverCurrentTeamAdmin(admin.ModelAdmin):
+    display_name = "Team Driver Timeline"
+    list_display = ["driver", "team", "racing_series"]
+    ordering = ["driver__name"]
+
+
+@admin.register(RacingSeries)
+class RacingSeriesAdmin(admin.ModelAdmin):
+    display_name = "Team Driver Timeline"
