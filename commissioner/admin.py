@@ -129,9 +129,14 @@ class StateAdmin(admin.ModelAdmin):
     ordering = ["name"]
 
 
+class DriverCurrentTeamInLine(admin.TabularInline):
+    model = Driver.teams.through
+
+
 @admin.register(Driver)
 class DriverAdmin(admin.ModelAdmin):
     display_name = "Drivers"
+    inlines = [DriverCurrentTeamInLine]
     list_display = ["name", "salary"]
     ordering = ["name"]
 

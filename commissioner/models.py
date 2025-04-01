@@ -118,6 +118,13 @@ class Track(Base):
         unique = "name"
 
 
+class RacingSeries(Base):
+    name = models.CharField(max_length=32, default="NASCAR")
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Race(Base):
     name = models.CharField(max_length=64, default="")
     track = models.ForeignKey(Track, on_delete=models.CASCADE, null=True)
@@ -125,6 +132,7 @@ class Race(Base):
     race_date = models.DateField(
         null=False, default=django.utils.timezone.now, unique=True
     )
+    series = models.ForeignKey(RacingSeries, on_delete=models.CASCADE)
     # website = models.URLField(null=True, blank=True)
     laps = models.IntegerField(default=-1)
     # If checked load_all will reload results data and or create a default
@@ -150,17 +158,16 @@ class Driver(Base):
     website = models.URLField(null=True, blank=True)
     # slug = models.TextField(blank=True)
     # team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
-    teams = models.ManyToManyField(Team, through="DriverCurrentTeam")
+    teams = models.ManyToManyField(
+        Team, through="DriverCurrentTeam", related_name="teams"
+    )
+    comments = models.TextField(max_length=1024, null=True, blank=True)
 
     def __str__(self) -> str:
         return self.name
 
-
-class RacingSeries(Base):
-    name = models.CharField(max_length=32, default="NASCAR")
-
-    def __str__(self) -> str:
-        return self.name
+    class Meta:
+        pass
 
 
 class DriverCurrentTeam(Base):
@@ -172,6 +179,14 @@ class DriverCurrentTeam(Base):
 
     def __str__(self) -> str:
         return f"{self.driver} - {self.racing_series} - {self.team} - {self.start_date}"
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["driver", "team", "racing_series", "start_date"],
+                name="unique_driver_team_racing_series",
+            )
+        ]
 
 
 from django.db.models.functions import Cast

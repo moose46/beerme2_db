@@ -8,7 +8,7 @@ SELECT
 	cast(DRIVER.SALARY as money),
 	-- finish_pos,
 	-- select count(*) from raceresult where race_id = 9 and finish_pos = 1 and raceresult.driver_id = 1 as wins
-	TEAM.NAME,
+	-- TEAM.NAME,
 	RACERESULT.MANUFACTURER
 	,TRACK.NAME TRACK_NAME
 	-- ,race.road_course
@@ -16,7 +16,7 @@ FROM
 	COMMISSIONER_DRIVER DRIVER,
 	COMMISSIONER_RACERESULT RACERESULT,
 	COMMISSIONER_RACE RACE,
-	COMMISSIONER_TEAM TEAM,
+	-- COMMISSIONER_TEAM TEAM,
 	COMMISSIONER_TRACK TRACK
 WHERE
 	-- raceresult.finish_pos <= 10
@@ -24,7 +24,7 @@ WHERE
 	-- and race.race_date = '2025-03-30'
 	AND RACE.TRACK_ID = TRACK.ID
 	AND RACERESULT.DRIVER_ID = DRIVER.ID
-	AND TEAM.ID = DRIVER.TEAM_ID
+	-- AND TEAM.ID = DRIVER.TEAM_ID
 	AND TRACK.ID = 7
 	-- and raceresult.finish_pos
 	-- and "races" > 2
@@ -32,7 +32,7 @@ WHERE
 GROUP BY
 	DRIVER.NAME,
 	-- race.race_date,
-	TEAM.NAME,
+	-- TEAM.NAME,
 	RACERESULT.MANUFACTURER,
 	TRACK.NAME,
 	SALARY
