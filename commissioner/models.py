@@ -142,7 +142,7 @@ class Race(Base):
     create_results_file = models.BooleanField(default=True, name="create_results_file")
 
     def __str__(self) -> str:
-        return f"{self.name} {self.race_date}"
+        return f"{self.track} {self.race_date}"
 
     class META:
         unique_together = ("track", "race_date")
@@ -286,9 +286,12 @@ class ScoreBoard(Base):
     looser = models.ForeignKey(
         Bet, on_delete=models.CASCADE, null=True, related_name="+"
     )
+    # winner gets 1 beer if he finishes ahead of the other player
+    # winner gets 2 beers if he wins the race
+    beers = models.IntegerField(default=0, null=False)
 
     def __str__(self) -> str:
-        return f"{self.winner} ---- {self.race} "
+        return f"{self.winner.player.name} ---- {self.race} "
 
     # @property
     # def looser(self):

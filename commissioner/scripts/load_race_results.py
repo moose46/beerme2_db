@@ -7,6 +7,8 @@ import sys
 from collections import namedtuple
 from pathlib import Path
 
+from django.forms import NullBooleanField
+
 from commissioner.models import (
     Bet,
     Driver,
@@ -181,12 +183,80 @@ def load_race_results(race):
 
 def update_bets(race):
     for bet in Bet.objects.filter(race=race):
-        race_driver_results = RaceResult.objects.filter(driver=bet.driver).filter(
-            race=bet.race
+        race_driver_results = (
+            RaceResult.objects.filter(driver=bet.driver)
+            .filter(race=bet.race)
+            .order_by("finish_pos")
         )
         print(f"{bet.player} {bet.race} {race_driver_results[0].finish_pos}")
         bet.finish = race_driver_results[0].finish_pos
         bet.save()
+
+
+from django.db.models import Q
+
+bet_results_list = []
+
+
+def score_the_race(race: Race):
+    bets = Bet.objects.filter(race_id=race)
+    # if No bets made on this race, return
+    if bets.count() == 0:
+        return
+    print(f"bets={bets}")
+    # print(f"{race}")
+    # clear the score board
+    sb = ScoreBoard.objects.filter().delete()
+    bet_cnt = 0
+    # returns all bets for one race
+    try:
+        rawsql = RaceResult.objects.raw(
+            "SELECT BET.ID, FINISH_POS, BET.RACE_ID, BET.PLAYER_ID FROM COMMISSIONER_RACERESULT RACERESULTS, COMMISSIONER_BET BET WHERE	BET.DRIVER_ID = RACERESULTS.DRIVER_ID AND BET.RACE_ID = RACERESULTS.RACE_ID	AND FINISH_POS = (SELECT MIN(FINISH_POS) FROM COMMISSIONER_RACERESULT R, COMMISSIONER_BET B WHERE B.RACE_ID = R.RACE_ID	AND R.DRIVER_ID = B.DRIVER_ID AND RACERESULTS.RACE_ID = B.RACE_ID	) GROUP BY	1,	2,	3, 4"
+        )
+        for r in rawsql:
+            print(f" --- {r.id} {r.finish_pos} {r.race_id} {r.player_id}")
+            sb = ScoreBoard()
+            sb.race = Race.objects.get(pk=r.race_id)
+            sb.winner = Bet.objects.get(pk=r.player_id)
+            sb.beers = 2 if r.finish_pos == 1 else 1
+            sb.save()
+        # bet_results = RaceResult.objects.filter(race_id=2, driver_id=2)
+        # for br in bet_results:
+        #     print(f"    {br} {br.finish_pos}")
+    except Exception as e:
+        print(f"{e}")
+        exit()
+    for b in bets:
+
+        try:
+            # get the results for each bet
+            results = RaceResult.objects.filter(
+                race_id=race,
+                driver_id=b.driver,
+                # Q(race_id=b.race) & Q(driver_id=b.driver)
+            )
+            bet_results = {
+                "player_id": b.player.pk,
+                "bet_number": b.driver.pk,
+                "finish_pos": results[0].finish_pos,
+            }
+            # bet_results_list.append(bet_results)
+            # theScoreBoard = ScoreBoard.objects.filter(race_id=race.pk)
+            # for winners in theScoreBoard:
+            #     player = ScoreBoard(race_id=race.pk, winner_id=b.player.pk)
+            #     player.save()
+            # else:
+            #     pass
+            # for r in results:
+            #     print(f"results={r}")
+            # for x in bet_results_list:
+            #     print(f"{x}")
+        except Exception as e:
+            print(
+                f"{e}  --Info-- bet_race.pk={b.race.pk} race_pk={race.pk} driver_id={b.driver.id}"
+            )
+            exit()
+        # print(f"{b}")
 
 
 def run():
@@ -197,7 +267,7 @@ def run():
         if race.create_results_file == True:
             try:
                 # remove all data from this race and refresh the data
-                RaceResult.objects.filter(race_id=race.id).delete()
+                RaceResult.objects.filter(race_id=race.pk).delete()
             except Exception as e:
                 print(f"{e} {race}")
                 exit()
@@ -207,5 +277,5 @@ def run():
                 race.save()
         update_bets(race)
         sb = ScoreBoard()
-        # sb.score_the_race(race)
+        score_the_race(race)
     print("Runscript OK")
