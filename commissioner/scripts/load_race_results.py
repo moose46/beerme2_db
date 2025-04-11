@@ -199,11 +199,11 @@ bet_results_list = []
 
 
 def score_the_race(race: Race):
-    bets = Bet.objects.filter(race_id=race)
+    # bets = Bet.objects.filter(race_id=race)
     # if No bets made on this race, return
-    if bets.count() == 0:
-        return
-    print(f"bets={bets}")
+    # if bets.count() == 0:
+    #     return
+    # print(f"bets={bets}")
     # print(f"{race}")
     # clear the score board
     sb = ScoreBoard.objects.filter().delete()
@@ -220,43 +220,23 @@ def score_the_race(race: Race):
             sb.winner = Bet.objects.get(pk=r.player_id)
             sb.beers = 2 if r.finish_pos == 1 else 1
             sb.save()
-        # bet_results = RaceResult.objects.filter(race_id=2, driver_id=2)
-        # for br in bet_results:
-        #     print(f"    {br} {br.finish_pos}")
     except Exception as e:
         print(f"{e}")
         exit()
-    for b in bets:
+    # for b in bets:
 
-        try:
-            # get the results for each bet
-            results = RaceResult.objects.filter(
-                race_id=race,
-                driver_id=b.driver,
-                # Q(race_id=b.race) & Q(driver_id=b.driver)
-            )
-            bet_results = {
-                "player_id": b.player.pk,
-                "bet_number": b.driver.pk,
-                "finish_pos": results[0].finish_pos,
-            }
-            # bet_results_list.append(bet_results)
-            # theScoreBoard = ScoreBoard.objects.filter(race_id=race.pk)
-            # for winners in theScoreBoard:
-            #     player = ScoreBoard(race_id=race.pk, winner_id=b.player.pk)
-            #     player.save()
-            # else:
-            #     pass
-            # for r in results:
-            #     print(f"results={r}")
-            # for x in bet_results_list:
-            #     print(f"{x}")
-        except Exception as e:
-            print(
-                f"{e}  --Info-- bet_race.pk={b.race.pk} race_pk={race.pk} driver_id={b.driver.id}"
-            )
-            exit()
-        # print(f"{b}")
+    #     try:
+    #         # get the results for each bet
+    #         results = RaceResult.objects.filter(
+    #             race_id=race,
+    #             driver_id=b.driver,
+    #             # Q(race_id=b.race) & Q(driver_id=b.driver)
+    #         )
+    #     except Exception as e:
+    #         print(
+    #             f"{e}  --Info-- bet_race.pk={b.race.pk} race_pk={race.pk} driver_id={b.driver.id}"
+    #         )
+    #         exit()
 
 
 def run():
