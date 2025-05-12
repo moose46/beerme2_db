@@ -75,7 +75,7 @@ class BetAdmin(admin.ModelAdmin):
 class RaceResultsAdmin(admin.ModelAdmin):
     display_name = "Race Results"
     list_display = ["race", "driver", "finish_pos", "start_pos", "track_name"]
-    ordering = ["race", "finish_pos"]
+    ordering = ["-race__race_date", "finish_pos"]
 
     search_fields = [
         "race__track__name",
@@ -84,25 +84,25 @@ class RaceResultsAdmin(admin.ModelAdmin):
     def track_name(self, instance):
         return instance.race.track.name
 
-    def get_search_results(self, request, queryset, search_term):
-        queryset, may_have_duplicates = super().get_search_results(
-            request,
-            queryset,
-            search_term,
-        )
-        try:
-            search_term_as_int = int(search_term)
-        except ValueError:
-            print(search_term)
-            # pass
-            queryset = self.model.objects.filter(
-                race__track__name__icontains=search_term
-            )
-        else:
-            # https://docs.djangoproject.com/en/5.1/topics/db/queries/
-            queryset = self.model.objects.filter(finish_pos__lte=search_term_as_int)
+    # def get_search_results(self, request, queryset, search_term):
+    #     queryset, may_have_duplicates = super().get_search_results(
+    #         request,
+    #         queryset,
+    #         search_term,
+    #     )
+    #     try:
+    #         search_term_as_int = int(search_term)
+    #     except ValueError:
+    #         print(search_term)
+    #         # pass
+    #         queryset = self.model.objects.filter(
+    #             race__track__name__icontains=search_term
+    #         )
+    #     else:
+    #         # https://docs.djangoproject.com/en/5.1/topics/db/queries/
+    #         queryset = self.model.objects.filter(finish_pos__lte=search_term_as_int)
 
-        return queryset, may_have_duplicates
+    #     return queryset, may_have_duplicates
 
 
 @admin.register(ScoreBoard)
@@ -137,7 +137,10 @@ class DriverCurrentTeamInLine(admin.TabularInline):
 class DriverAdmin(admin.ModelAdmin):
     display_name = "Drivers"
     inlines = [DriverCurrentTeamInLine]
-    list_display = ["name", "salary"]
+    list_display = [
+        "name",
+        "salary",
+    ]
     ordering = ["name"]
 
 

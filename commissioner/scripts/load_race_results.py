@@ -182,15 +182,19 @@ def load_race_results(race):
 
 
 def update_bets(race):
-    for bet in Bet.objects.filter(race=race):
-        race_driver_results = (
-            RaceResult.objects.filter(driver=bet.driver)
-            .filter(race=bet.race)
-            .order_by("finish_pos")
-        )
-        print(f"{bet.player} {bet.race} {race_driver_results[0].finish_pos}")
-        bet.finish = race_driver_results[0].finish_pos
-        bet.save()
+    try:
+        for bet in Bet.objects.filter(race=race):
+            race_driver_results = (
+                RaceResult.objects.filter(driver=bet.driver)
+                .filter(race=bet.race)
+                .order_by("finish_pos")
+            )
+            print(f"{bet.player} {bet.race} {race_driver_results[0].finish_pos}")
+            bet.finish = race_driver_results[0].finish_pos
+            bet.save()
+    except Exception as e:
+        print(f"UPDATE_BETS - {e} {bet.player} {bet.race}")
+        exit(-1)
 
 
 from django.db.models import Q
