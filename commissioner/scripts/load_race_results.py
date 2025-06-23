@@ -89,7 +89,6 @@ def load_players():
         print(f"{e}")
         exit()
 
-
 def check_for_results_file(filename):
     head_tail = os.path.split(filename)
     if not os.path.isfile(filename):

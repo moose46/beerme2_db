@@ -22,3 +22,8 @@ django-admin startproject beer beerme2_db
 python manage.py startapp commissioner
 pip install mssql-django
 ```
+
+to run program:
+python manage.py runserver
+
+python manage.py runscript load_race_results

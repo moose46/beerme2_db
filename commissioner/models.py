@@ -291,7 +291,7 @@ class ScoreBoard(Base):
     beers = models.IntegerField(default=0, null=False)
 
     def __str__(self) -> str:
-        return f"{self.winner.player.name} ---- {self.race} "
+        return f"{self.winner.player.name} ---- {self.race} --- Beers {self.beers}"
 
     # @property
     # def looser(self):
