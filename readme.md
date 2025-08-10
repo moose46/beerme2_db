@@ -16,14 +16,29 @@
 
 ### <https://docs.djangoproject.com/en/5.1/intro/tutorial01/>
 
-``` cmd
+```
 mkdir beerme2_db
 django-admin startproject beer beerme2_db
 python manage.py startapp commissioner
 pip install mssql-django
 ```
 
-to run program:
-python manage.py runserver
+### to run program
 
+```
+python manage.py runserver
+```
+
+### to load race results
+
+```
 python manage.py runscript load_race_results
+```
+
+### Database Information
+
+---
+
+#### pgadmin4 PostgresSQL 16 password:admin
+
+#### database:beer_me user:bob password: admin role:bob
