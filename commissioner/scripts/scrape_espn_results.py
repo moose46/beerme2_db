@@ -1,3 +1,4 @@
+from pathlib import Path
 import re
 import urllib.request
 from pprint import pprint
@@ -40,10 +41,21 @@ def run():
     for url in urls:
         # Filter out URLs that do not match the expected pattern
         print(f"Processing URL: {url.split('/')[-1]}")
+        id = url.split('/')[-1]
+        year = id[0:4]
+        month = id[4:6]
+        day = id[6:8]
+        print(f'year={year} month={month} day={day}')
+        output_file_name = f"{month}-{day}-{year}.csv"
         hot_soup = bs(url)
         cnt = 0
         if hot_soup:
-            f = open("output.csv", "w")
+            my_file = Path(output_file_name)
+            if my_file.is_file():
+                # file exists
+                print(f"{my_file} exists")
+                continue
+            f = open(output_file_name, "w")
             if table_rows := hot_soup.find_all("tr"):
                 for tr in table_rows:
                     for data_cell in tr.find_all("td"):
@@ -56,6 +68,5 @@ def run():
                         f.write(data_cell.get_text(strip=True) + "\t")
                     if cnt > 1:
                         f.write("\n")
-                exit()
     else:
         print("Failed to parse the page.")
