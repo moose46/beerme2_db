@@ -26,50 +26,46 @@ class RaceDate:
         self.year = year
         print(f"Processing year: {year}")
         self.url = f"{HOST}{year}"
-        self.soup = bs(self.url)
 
     def get_year_schedule(self):
+        soup = bs(self.url)
         # https://www.geeksforgeeks.org/python/extract-all-the-urls-from-the-webpage-using-python/
         urls = []
         year = ""
-        if self.soup:
+        if soup:
             urls.extend(
                 link.get("href")
-                for link in self.soup.find_all("a")
+                for link in soup.find_all("a")
                 if link.get("href").__contains__("/racing/raceresults/")
             )
         # Filter out URLs that do not match the expected pattern
         print(f"Processing URL: {self.url.split('/')[-1]}")
         id = self.url.split("/")[-1]
-        year = id[0:4]
-        month = id[4:6]
-        day = id[6:8]
-        print(f"year={year} month={month} day={day}")
-        output_file_name = f"{TARGET_RESULTS}/{month}-{day}-{year}.csv"
+        year = self.year
+        print(f"year={year}")
+        output_file_name = f"{TARGET_RESULTS}/{year}.csv"
         my_file = Path(output_file_name)
         if my_file.is_file():
             # file exists
             print(f"{my_file} exists {Path(output_file_name).stat().st_size} bytes")
-            return
-
-    # hot_soup = bs(url)
-    # cnt = 0
-    # if hot_soup:
-    #         f = open(output_file_name, "w")
-    #         if table_rows := hot_soup.find_all("tr"):
-    #         for tr in table_rows:
-    #                 for data_cell in tr.find_all("td"):
-    #                 if cnt == 0:
-    #                         cnt = 1
-    #                         continue
-    #                         # print(child)
-    #                 cnt += 1
-    #                 # print(data_cell.get_text(strip=True), end="\t")
-    #                 f.write(data_cell.get_text(strip=True) + "\t")
-    #                 if cnt > 1:
-    #                 f.write("\n")
-    # else:
-    # print(f"End of {year} results.")
+            # return
+        f = open(output_file_name, "w")
+        if table_rows := soup.find_all("tr"):
+            for tr in table_rows:
+                # skip the year results line
+                if table_rows.index(tr) == 0:
+                    continue
+                print("================================")
+                print(tr.td.get_text())
+                # for data_cell in tr.find_all("td"):
+                #     for c in data_cell.children:
+                #         print(f"{c.get_text(strip=True)}", end="|")
+                #
+                #     f.write(data_cell.get_text(strip=True) + "\t")
+                print("------------------------------------")
+                f.write("\n")
+        else:
+            print(f"End of {year} results.")
 
     def __call__(self, *args, **kwargs):
         raise NotImplementedError
