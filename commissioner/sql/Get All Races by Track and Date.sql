@@ -7,7 +7,8 @@ FROM
 	COMMISSIONER_TRACK TRACK
 WHERE
 	TRACK.ID = RACE.TRACK_ID
-	AND TRACK.NAME LIKE ('Mich%')
+	and race_date  > '2023-01-01' and race_date < '2024-01-01'
+	-- AND TRACK.NAME LIKE ('Mich%')
 ORDER BY
-	TRACK."name",
+	-- TRACK."name",
 	RACE.RACE_DATE
