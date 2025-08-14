@@ -3,11 +3,12 @@
 db.sqlite3
 beer/__pycache__/
 commissioner/__pycache__/
-
-
+*.csv
+*.iml
 commissioner/scripts/__pycache__/
 beerme.sqlproj
-
+*.xml
 commissioner/scripts/logs/load_race_results.txt
 /commissioner/migrations/__pycache__
 beerme.db
+.gitignore
