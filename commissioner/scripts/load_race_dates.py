@@ -1,4 +1,5 @@
 from pathlib import Path
+from pickle import FALSE
 
 import requests
 from bs4 import BeautifulSoup
@@ -55,15 +56,23 @@ class RaceDate:
                 # skip the year results line
                 if table_rows.index(tr) == 0:
                     continue
-                print("================================")
-                print(tr.td.get_text())
-                # for data_cell in tr.find_all("td"):
-                #     for c in data_cell.children:
-                #         print(f"{c.get_text(strip=True)}", end="|")
-                #
+                if table_rows.index(tr) == 1:
+                    print(tr)
+                for data_cell in tr.find_all("td"):
+                    print(tr.strip('\n') if None else "", end="")
+                    if tr.index(data_cell) > 3:
+                        continue
+                    l = list(data_cell.strings)
+                    for x in l:
+                        if len(l) == 2:
+                            print(f"{l[1]}\t", end="")
+                            break
+                        else:
+                            print(f"{x}\t", end="")
+
                 #     f.write(data_cell.get_text(strip=True) + "\t")
-                print("------------------------------------")
-                f.write("\n")
+                print()
+            # f.write("\n")
         else:
             print(f"End of {year} results.")
 
