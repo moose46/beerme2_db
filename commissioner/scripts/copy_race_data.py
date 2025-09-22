@@ -15,9 +15,13 @@ def run(*script_args):
     :type script_args: object
     """
     found = False
-    if len(script_args) == 0:
+    try:
+        if len(script_args) == 0:
+            print(f"Script args cannot be None, --script-args year is required")
+            print(f"python manage.py runscript copy_race_data --script-args 09-21-2025")
+            exit()
+    except:
         print(f"Script args cannot be None, --script-args year is required")
-        print(f"python manage.py runscript copy_race_data --script-args 09-21-2025")
         exit()
     print(f"Processing race date:\n{SOURCE_RESULTS}\\{script_args[0]}")
     if not os.path.isfile(os.path.join(TARGET_RESULTS, f"{script_args[0]}.csv")):

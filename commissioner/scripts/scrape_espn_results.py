@@ -53,9 +53,10 @@ def process_results(soup):
         my_file = Path(output_file_name)
         if my_file.is_file():
             # file exists
-            # print(f"{my_file} exists {Path(output_file_name).stat().st_size} bytes")
-
-            continue
+            print(f"{my_file} exists {Path(output_file_name).stat().st_size} bytes")
+            if my_file.stat().st_size > 5:
+                print(f"{my_file} > 5")
+                continue
         hot_soup = bs(url)
         cnt = 0
         if hot_soup:
