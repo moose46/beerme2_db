@@ -81,6 +81,6 @@ class RaceDate:
 
 
 def run():
-    for year in range(2000, 2001):
+    for year in range(2025, 2026):
         x = RaceDate(year)
         x.get_year_schedule()

@@ -53,7 +53,7 @@ def process_results(soup):
         my_file = Path(output_file_name)
         if my_file.is_file():
             # file exists
-            print(f"{my_file} exists {Path(output_file_name).stat().st_size} bytes")
+            # print(f"{my_file} exists {Path(output_file_name).stat().st_size} bytes")
 
             continue
         hot_soup = bs(url)
@@ -77,7 +77,7 @@ def process_results(soup):
 
 
 def run():
-    for year in range(1980, 2000):
+    for year in range(2025, 2026):
         print(f"Processing year: {year}")
         url = f"{HOST}{year}"
         soup = bs(url)

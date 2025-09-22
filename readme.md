@@ -42,3 +42,5 @@ python manage.py runscript load_race_results
 #### pgadmin4 PostgresSQL 16 password:admin
 
 #### database:beer_me user:bob password: admin role:bob
+
+#### python manage.py runscript copy_race_data --script-args 2025
