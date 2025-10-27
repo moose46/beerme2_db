@@ -161,6 +161,8 @@ class Driver(Base):
     teams = models.ManyToManyField(
         Team, through="DriverCurrentTeam", related_name="teams"
     )
+    # this is the current team the driver is driving for
+    current_team = models.IntegerField(default=27)
     comments = models.TextField(max_length=1024, null=True, blank=True)
 
     def __str__(self) -> str:
@@ -203,8 +205,9 @@ class RaceResult(Base):
         "Ford": "FORD",
         "Toyota": "TOYOTA",
     }
-    team = models.CharField(max_length=64, null=True)
-    # team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
+    # team = models.CharField(max_length=64, null=True)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
+    track = models.ForeignKey(Track, on_delete=models.CASCADE, null=True)
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     # manufacturer = models.CharField(

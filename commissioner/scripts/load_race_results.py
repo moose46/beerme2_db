@@ -65,7 +65,8 @@ def is_valid_date(date_str):
     except ValueError:
         return False
 
-
+def lookup_driver_team(driver):
+    pass
 def look_up_driver(row):
     try:
         return Driver.objects.get(name=row.DRIVER)
@@ -127,6 +128,8 @@ def insert_race_results(driver: Driver, data, race):
     finish.finish_pos = data.POS
     finish.start_pos = data.START
     finish.race = race
+    finish.race_id = race.id
+    finish.track_id = race.track_id
     finish.driver = driver
     finish.car_no = data.CAR
     finish.manufacturer = data.MANUFACTURER
@@ -217,7 +220,7 @@ def score_the_race(race: Race):
             "SELECT BET.ID, FINISH_POS, BET.RACE_ID, BET.PLAYER_ID FROM COMMISSIONER_RACERESULT RACERESULTS, COMMISSIONER_BET BET WHERE	BET.DRIVER_ID = RACERESULTS.DRIVER_ID AND BET.RACE_ID = RACERESULTS.RACE_ID	AND FINISH_POS = (SELECT MIN(FINISH_POS) FROM COMMISSIONER_RACERESULT R, COMMISSIONER_BET B WHERE B.RACE_ID = R.RACE_ID	AND R.DRIVER_ID = B.DRIVER_ID AND RACERESULTS.RACE_ID = B.RACE_ID	) GROUP BY	1,	2,	3, 4"
         )
         for r in rawsql:
-            print(f" --- {r.id} {r.finish_pos} {r.race_id} {r.player_id}")
+            # print(f" --- {r.id} {r.finish_pos} {r.race_id} {r.player_id}")
             sb = ScoreBoard()
             sb.race = Race.objects.get(pk=r.race_id)
             sb.winner = Bet.objects.get(pk=r.player_id)

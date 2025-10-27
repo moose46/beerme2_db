@@ -25,22 +25,29 @@ pip install mssql-django
 
 ### to run program
 
-```
-python manage.py runserver
-```
+`python manage.py runserver`
 
+### to scrape espn results
+``` python manage,py runscript scrape_espn_results```
 ### to load race results
-
-```
-python manage.py runscript load_race_results
-```
+```python manage.py runscript load_race_results```
 
 ### Database Information
-
 ---
 
 #### pgadmin4 PostgresSQL 16 password:admin
 
 #### database:beer_me user:bob password: admin role:bob
+> Copy csv files to beerme
 
-#### python manage.py runscript copy_race_data --script-args 2025
+`python manage.py runscript copy_race_data --script-args 10-26-2025`
+
+> To load race results from csv files
+
+`python manage.py runscript load_race_results`
+
+> Update database tables from the models
+
+`python manage.py makemigrations`
+
+`python manage.py migrate`
